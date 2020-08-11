@@ -13,12 +13,12 @@
         }
         public bool Sacar(double valor)
         {
-            if (this.saldo < valor || valor <= 0)
+            if (saldo < valor || valor <= 0)
             {
                 return false;
             }
 
-            this.saldo -= valor;
+            saldo -= valor;
             return true;
         }
 
@@ -26,22 +26,20 @@
         {
             if (valor <= 0)
             {
+                return;
+            }
 
-            }
-            else
-            {
-                this.saldo += valor;
-            }
+            saldo += valor;
         }
 
         public bool Transferir(double valor, ContaCorrente contaDestino)
         {
-            if (this.saldo < valor || valor < 0)
+            if (saldo < valor || valor < 0)
             {
                 return false;
             }
 
-            this.saldo -= valor;
+            saldo -= valor;
             contaDestino.Depositar(valor);
             return true;
         }

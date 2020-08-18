@@ -1,4 +1,4 @@
-﻿namespace ConsoleBank
+﻿namespace ConsoleBank.Negocio
 {
     public class Cliente
     {

@@ -1,4 +1,7 @@
 ﻿using System;
+using ConsoleBank.Negocio;
+using ConsoleBank.Funcionarios;
+
 
 namespace ConsoleBank
 {
@@ -6,38 +9,25 @@ namespace ConsoleBank
     {
         static void Main(string[] args)
         {
-            Cliente gabriela = new Cliente();
+            GerenciadorBonificacao gerenciadorBonificacao = new GerenciadorBonificacao();
 
+            Funcionario carlos = new Funcionario();
+            carlos.Nome = "Carlos";
+            carlos.CPF = "397.288.559-76";
+            carlos.Salario = 2000;
+            gerenciadorBonificacao.Registrar(carlos);
+
+            Diretor gabriela = new Diretor();
             gabriela.Nome = "Gabriela";
-            gabriela.Cpf = "391.422.894-40";
-            gabriela.Profissao = "Assistente Rub";
+            gabriela.CPF = "185.277.355-85";
+            gabriela.Salario = 10000;
+            gerenciadorBonificacao.Registrar(gabriela);
 
-            ContaCorrente contadaGabriela = new ContaCorrente(100, 59017);
 
-            contadaGabriela.Titular = gabriela;
+            Console.WriteLine(carlos.GetBonificacao());
+            Console.WriteLine(gabriela.GetBonificacao());
+            Console.WriteLine(gerenciadorBonificacao.GetTotalBonificacao());
 
-            contadaGabriela.Sacar(50);
-            contadaGabriela.Depositar(450);
-
-            Console.WriteLine("Titular: " + contadaGabriela.Titular.Nome);
-            Console.WriteLine("Cpf: " + contadaGabriela.Titular.Cpf);
-            Console.WriteLine("Profissão: " + contadaGabriela.Titular.Profissao);
-            Console.WriteLine("Agencia: " + contadaGabriela.Agencia);
-            Console.WriteLine("Numero: " + contadaGabriela.Numero);
-            Console.WriteLine("Saldo: " + contadaGabriela.ConsultarSaldo());
-            Console.WriteLine();
-
-            ContaCorrente contadoFelipe = new ContaCorrente(100, 59018);
-            
-            contadoFelipe.Depositar(50);
-            contadoFelipe.Transferir(40, contadaGabriela);
-
-            Console.WriteLine("Titular: " + contadoFelipe.Titular);
-            Console.WriteLine("Agencia: " + contadoFelipe.Agencia);
-            Console.WriteLine("Numero: " + contadoFelipe.Numero);
-            Console.WriteLine("Saldo: " + contadoFelipe.ConsultarSaldo());
-            Console.WriteLine();
-            Console.WriteLine("Total de contas criadas: "+ ContaCorrente.TotalDeContasCriadas);
             Console.ReadLine();
         }
     }

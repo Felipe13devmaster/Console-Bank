@@ -9,26 +9,37 @@ namespace ConsoleBank
     {
         static void Main(string[] args)
         {
-            GerenciadorBonificacao gerenciadorBonificacao = new GerenciadorBonificacao();
-
-            Funcionario carlos = new Funcionario();
-            carlos.Nome = "Carlos";
-            carlos.CPF = "397.288.559-76";
-            carlos.Salario = 2000;
-            gerenciadorBonificacao.Registrar(carlos);
-
-            Diretor gabriela = new Diretor();
-            gabriela.Nome = "Gabriela";
-            gabriela.CPF = "185.277.355-85";
-            gabriela.Salario = 10000;
-            gerenciadorBonificacao.Registrar(gabriela);
-
-
-            Console.WriteLine(carlos.GetBonificacao());
-            Console.WriteLine(gabriela.GetBonificacao());
-            Console.WriteLine(gerenciadorBonificacao.GetTotalBonificacao());
+            CalcularBonificacao();
 
             Console.ReadLine();
+        }
+
+        public static void CalcularBonificacao()
+        {
+            GerenciadorBonificacao gerenciadorBonificacao = new GerenciadorBonificacao();
+
+            Designer designer = new Designer("458.288.397-30");
+            designer.Nome = "Fabio";
+
+            Diretor diretor = new Diretor("391.432.388-95");
+            diretor.Nome = "Alfredo";
+
+            Auxiliar auxiliar = new Auxiliar("277.355.988-87");
+            auxiliar.Nome = "Jose";
+
+            GerenteDeConta gerenteDeConta = new GerenteDeConta("977.355.899-88");
+            gerenteDeConta.Nome = "Gabriela";
+
+            Desenvolvedor desenvolvedor = new Desenvolvedor("391.322.855-94");
+            desenvolvedor.Nome = "Felipe";
+
+            gerenciadorBonificacao.Registrar(designer);
+            gerenciadorBonificacao.Registrar(diretor);
+            gerenciadorBonificacao.Registrar(auxiliar);
+            gerenciadorBonificacao.Registrar(gerenteDeConta);
+            gerenciadorBonificacao.Registrar(desenvolvedor);
+
+            Console.WriteLine("Total de boificação do mes: " + gerenciadorBonificacao.GetTotalBonificacao());
         }
     }
 }

@@ -1,14 +1,21 @@
 ﻿namespace ConsoleBank.Funcionarios
 {
-    public class Funcionario
+    public abstract class Funcionario
     {
+        public static int TotalDeFuncionarios { get; private set; }
         public string Nome { get; set; }
-        public string CPF { get; set; }
-        public double Salario { get; set; }
+        public string CPF { get; private set; }
+        public double Salario { get; protected set; }
 
-        public virtual double GetBonificacao()
+        public Funcionario(string cpf, double salario)
         {
-            return Salario * 0.10;
+            CPF = cpf;
+            Salario = salario;
+            TotalDeFuncionarios++;
         }
+
+        public abstract void AumentarSalario();
+
+        public abstract double GetBonificacao();
     }
 }

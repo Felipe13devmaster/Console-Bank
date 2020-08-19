@@ -1,7 +1,7 @@
 ﻿using System;
 using ConsoleBank.Negocio;
 using ConsoleBank.Funcionarios;
-
+using ConsoleBank.Sistemas;
 
 namespace ConsoleBank
 {
@@ -9,9 +9,26 @@ namespace ConsoleBank
     {
         static void Main(string[] args)
         {
-            CalcularBonificacao();
+            //CalcularBonificacao();
+            UsarSistema();
 
             Console.ReadLine();
+        }
+
+        public static void UsarSistema()
+        {
+            SistemaInterno sistemaInterno = new SistemaInterno();
+
+            Diretor diretor = new Diretor("391.432.388-95");
+            diretor.Nome = "Alfredo";
+            diretor.Senha = "5218";
+
+            GerenteDeConta gerenteDeConta = new GerenteDeConta("977.355.899-88");
+            gerenteDeConta.Nome = "Gabriela";
+            gerenteDeConta.Senha = "1234";
+
+            sistemaInterno.Logar(diretor, "5218");
+            sistemaInterno.Logar(gerenteDeConta, "1234");
         }
 
         public static void CalcularBonificacao()
@@ -39,7 +56,7 @@ namespace ConsoleBank
             gerenciadorBonificacao.Registrar(gerenteDeConta);
             gerenciadorBonificacao.Registrar(desenvolvedor);
 
-            Console.WriteLine("Total de boificação do mes: " + gerenciadorBonificacao.GetTotalBonificacao());
+            Console.WriteLine("Total de bonificação do mes: " + gerenciadorBonificacao.GetTotalBonificacao());
         }
     }
 }

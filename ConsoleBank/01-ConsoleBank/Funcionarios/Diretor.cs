@@ -1,6 +1,9 @@
-﻿namespace ConsoleBank.Funcionarios
+﻿using ConsoleBank.Sistemas;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
+
+namespace ConsoleBank.Funcionarios
 {
-    public class Diretor : Funcionario
+    public class Diretor : Autenticavel
     {
         public Diretor(string cpf) : base(cpf, 5000)
         {

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ConsoleBank.Sistemas;
 
 namespace ConsoleBank.Funcionarios
 {
-    class GerenteDeConta : Funcionario
+    class GerenteDeConta : Autenticavel
     {
         public GerenteDeConta(string cpf) : base(cpf, 4000)
         {

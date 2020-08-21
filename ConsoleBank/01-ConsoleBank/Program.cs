@@ -27,8 +27,12 @@ namespace ConsoleBank
             gerenteDeConta.Nome = "Gabriela";
             gerenteDeConta.Senha = "1234";
 
+            ParceiroComercial parceiroComercial = new ParceiroComercial();
+            parceiroComercial.Senha = "4321";
+
             sistemaInterno.Logar(diretor, "5218");
             sistemaInterno.Logar(gerenteDeConta, "1234");
+            sistemaInterno.Logar(parceiroComercial, "4321");
         }
 
         public static void CalcularBonificacao()

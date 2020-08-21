@@ -1,8 +1,6 @@
-﻿using ConsoleBank.Sistemas;
-
-namespace ConsoleBank.Funcionarios
+﻿namespace ConsoleBank.Funcionarios
 {
-    class GerenteDeConta : Autenticavel
+    class GerenteDeConta : FuncionarioAutenticavel
     {
         public GerenteDeConta(string cpf) : base(cpf, 4000)
         {

@@ -4,8 +4,10 @@
     {
         public Cliente Titular { get; set; }
         public static int TotalDeContasCriadas { get; private set; }
+        public static double TaxaOperacao { get; private set; }
+
         private int _agencia;
-        public int Agencia 
+        public int Agencia
         {
             get
             {
@@ -18,7 +20,7 @@
                     return;
                 }
                 _agencia = value;
-            } 
+            }
         }
         public int Numero { get; set; }
 
@@ -36,10 +38,11 @@
             }
         }
 
-        public ContaCorrente (int agencia, int numero)
+        public ContaCorrente(int agencia, int numero)
         {
             Agencia = agencia;
             Numero = numero;
+            TaxaOperacao = 30 / TotalDeContasCriadas;
             TotalDeContasCriadas++;
         }
 

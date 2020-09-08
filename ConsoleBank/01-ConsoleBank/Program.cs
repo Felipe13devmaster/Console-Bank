@@ -9,9 +9,35 @@ namespace ConsoleBank
     {
         static void Main(string[] args)
         {
-            //CalcularBonificacao();
-            UsarSistema();
+            try
+            {
+                ContaCorrente contaCorrente = new ContaCorrente(117, 563002);
+                ContaCorrente contaCorrente1 = new ContaCorrente(110, 223005);
+                contaCorrente1.Transferir(10000, contaCorrente);
+                contaCorrente.Depositar(50);
+                Console.WriteLine(contaCorrente.Saldo);
+                contaCorrente.Sacar(-500);
+                
+            }
+            catch (ArgumentException e)
+            {
+                if (e.ParamName == "numero")
+                {
 
+                }
+
+                Console.WriteLine("Ocorreu uma exceção do tipo ArgumentException");
+                Console.WriteLine("Argumento com problema: " + e.ParamName);
+                Console.WriteLine(e.Message);
+            }
+            catch (SaldoInsuficienteException e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine("Exceção do tipo SaldoInsuficienteException.");
+                Console.WriteLine(e.Saldo);
+                Console.WriteLine(e.ValorSaque);
+                Console.WriteLine(e.StackTrace);
+            }
             Console.ReadLine();
         }
 

@@ -7,6 +7,8 @@ namespace ConsoleBank.Negocio
         public Cliente Titular { get; set; }
         public static int TotalDeContasCriadas { get; private set; }
         public static double TaxaOperacao { get; private set; }
+        public int ContadorSaquesNaoPermitidos { get; private set; }
+        public int ContadorTransferenciasNaoPermitidas { get; private set; }
         public int Agencia { get; }
         public int Numero { get; } // prop somente leitura
 
@@ -28,18 +30,18 @@ namespace ConsoleBank.Negocio
         {
             if (agencia <= 0)
             {
-                throw new ArgumentException("O argumento agencia deve ser maior que 0.");
+                throw new ArgumentException("O argumento agencia deve ser maior que 0.", nameof(agencia));
             }
 
             if (numero <= 0)
             {
-                throw new ArgumentException("O argumento numero deve ser maior que 0.");
+                throw new ArgumentException("O argumento numero deve ser maior que 0.", nameof(numero));
             }
 
             Agencia = agencia;
             Numero = numero;
-            TaxaOperacao = 30 / TotalDeContasCriadas;
             TotalDeContasCriadas++;
+            TaxaOperacao = 30 / TotalDeContasCriadas;
         }
 
         public double ConsultarSaldo()
@@ -47,15 +49,20 @@ namespace ConsoleBank.Negocio
             return _saldo;
         }
 
-        public bool Sacar(double valor)
+        public void Sacar(double valor)
         {
-            if (_saldo < valor || valor <= 0)
+            if (valor < 0)
             {
-                return false;
+                throw new ArgumentException("Valor invalido para o saque", nameof(valor));
+            }
+
+            if (_saldo < valor)
+            {
+                ContadorSaquesNaoPermitidos++;
+                throw new SaldoInsuficienteException(Saldo, valor);
             }
 
             _saldo -= valor;
-            return true;
         }
 
         public void Depositar(double valor)
@@ -68,16 +75,24 @@ namespace ConsoleBank.Negocio
             _saldo += valor;
         }
 
-        public bool Transferir(double valor, ContaCorrente contaDestino)
+        public void Transferir(double valor, ContaCorrente contaDestino)
         {
-            if (_saldo < valor || valor < 0)
+            if (valor < 0)
             {
-                return false;
+                throw new ArgumentException("Valor invalido para a transferência. ", nameof(valor));
             }
 
-            _saldo -= valor;
+            try
+            {
+                Sacar(valor);
+            }
+            catch (SaldoInsuficienteException)
+            {
+                ContadorTransferenciasNaoPermitidas++;
+                throw;
+            }
+
             contaDestino.Depositar(valor);
-            return true;
         }
     }
 }

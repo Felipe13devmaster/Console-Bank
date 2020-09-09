@@ -2,6 +2,7 @@
 using ConsoleBank.Negocio;
 using ConsoleBank.Funcionarios;
 using ConsoleBank.Sistemas;
+using System.IO;
 
 namespace ConsoleBank
 {
@@ -9,18 +10,40 @@ namespace ConsoleBank
     {
         static void Main(string[] args)
         {
-            CarregarContas();
+            try
+            {
+                CarregarContas();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Catch do main");
+            }
+            
 
             Console.ReadLine();
         }
 
         private static void CarregarContas()
         {
-            LeitorDeArquivo leitorDeArquivo = new LeitorDeArquivo("contas.txt");
-            leitorDeArquivo.LerProximaLinha();
-            leitorDeArquivo.LerProximaLinha();
-            leitorDeArquivo.LerProximaLinha();
-            leitorDeArquivo.Fechar();
+            using (LeitorDeArquivo leitorDeArquivo = new LeitorDeArquivo("Teste.txt"))
+            {
+                leitorDeArquivo.LerProximaLinha();
+            }
+            
+            //O codigo acima equivale ao de baixo
+            //------------------------------------------
+            //LeitorDeArquivo leitorDeArquivo = null;
+            //try
+            //{
+            //    leitorDeArquivo = new LeitorDeArquivo("contasl.txt");
+            //    leitorDeArquivo.LerProximaLinha();
+            //    leitorDeArquivo.LerProximaLinha();
+            //    leitorDeArquivo.LerProximaLinha();
+            //}
+            //finally
+            //{
+            //    leitorDeArquivo.Fechar();
+            //}
         }
 
         private static void TestaInnerException()
@@ -62,7 +85,7 @@ namespace ConsoleBank
             }
         }
 
-        public static void UsarSistema()
+        private static void UsarSistema()
         {
             SistemaInterno sistemaInterno = new SistemaInterno();
 
@@ -82,7 +105,7 @@ namespace ConsoleBank
             sistemaInterno.Logar(parceiroComercial, "4321");
         }
 
-        public static void CalcularBonificacao()
+        private static void CalcularBonificacao()
         {
             GerenciadorBonificacao gerenciadorBonificacao = new GerenciadorBonificacao();
 

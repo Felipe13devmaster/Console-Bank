@@ -86,10 +86,10 @@ namespace ConsoleBank.Negocio
             {
                 Sacar(valor);
             }
-            catch (SaldoInsuficienteException)
+            catch (SaldoInsuficienteException e)
             {
                 ContadorTransferenciasNaoPermitidas++;
-                throw;
+                throw new OperacaoFinanceiraException("Operação nao realizada", e);//exceção interna para omitir informações sensiveis.
             }
 
             contaDestino.Depositar(valor);

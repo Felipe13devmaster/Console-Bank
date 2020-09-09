@@ -9,15 +9,29 @@ namespace ConsoleBank
     {
         static void Main(string[] args)
         {
+            CarregarContas();
+
+            Console.ReadLine();
+        }
+
+        private static void CarregarContas()
+        {
+            LeitorDeArquivo leitorDeArquivo = new LeitorDeArquivo("contas.txt");
+            leitorDeArquivo.LerProximaLinha();
+            leitorDeArquivo.LerProximaLinha();
+            leitorDeArquivo.LerProximaLinha();
+            leitorDeArquivo.Fechar();
+        }
+
+        private static void TestaInnerException()
+        {
             try
             {
-                ContaCorrente contaCorrente = new ContaCorrente(117, 563002);
-                ContaCorrente contaCorrente1 = new ContaCorrente(110, 223005);
-                contaCorrente1.Transferir(10000, contaCorrente);
-                contaCorrente.Depositar(50);
-                Console.WriteLine(contaCorrente.Saldo);
-                contaCorrente.Sacar(-500);
-                
+                ContaCorrente contaCorrente1 = new ContaCorrente(117, 563002);
+                ContaCorrente contaCorrente2 = new ContaCorrente(110, 223005);
+                contaCorrente1.Transferir(10000, contaCorrente2);
+
+
             }
             catch (ArgumentException e)
             {
@@ -38,7 +52,14 @@ namespace ConsoleBank
                 Console.WriteLine(e.ValorSaque);
                 Console.WriteLine(e.StackTrace);
             }
-            Console.ReadLine();
+            catch (OperacaoFinanceiraException e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace);
+                Console.WriteLine("Informações da Inner Exception (Exceção interna)");
+                Console.WriteLine(e.InnerException.Message);
+                Console.WriteLine(e.InnerException.StackTrace);
+            }
         }
 
         public static void UsarSistema()

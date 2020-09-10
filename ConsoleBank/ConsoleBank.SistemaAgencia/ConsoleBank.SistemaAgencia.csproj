@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{070C195E-6D3F-48F1-B950-EB4255571C32}</ProjectGuid>
+    <ProjectGuid>{0948506E-5EFF-481C-8099-94AF2197319E}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>_01_ConsoleBank</RootNamespace>
-    <AssemblyName>01-ConsoleBank</AssemblyName>
+    <RootNamespace>ConsoleBank.SistemaAgencia</RootNamespace>
+    <AssemblyName>ConsoleBank.SistemaAgencia</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -22,7 +22,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,7 +31,6 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -51,6 +49,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ConsoleBank.Modelos\ConsoleBank.Modelos.csproj">
+      <Project>{65cb2284-c4c6-469e-ad3a-5b7b7f879f6d}</Project>
+      <Name>ConsoleBank.Modelos</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

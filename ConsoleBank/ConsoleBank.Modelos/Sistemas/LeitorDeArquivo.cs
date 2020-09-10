@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ConsoleBank
+namespace ConsoleBank.Modelos.Sistemas
 {
     public class LeitorDeArquivo : IDisposable
     {
@@ -21,7 +17,7 @@ namespace ConsoleBank
         public string LerProximaLinha()
         {
             Console.WriteLine("Lendo linha...");
-            throw new IOException();
+            //throw new IOException();
             return "Linha do arquivo";
         }
 

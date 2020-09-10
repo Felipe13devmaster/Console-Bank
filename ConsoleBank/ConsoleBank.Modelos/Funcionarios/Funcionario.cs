@@ -1,4 +1,4 @@
-﻿namespace ConsoleBank.Funcionarios
+﻿namespace ConsoleBank.Modelos.Funcionarios
 {
     public abstract class Funcionario
     {

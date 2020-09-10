@@ -1,11 +1,4 @@
-﻿using ConsoleBank.Funcionarios;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ConsoleBank.Funcionarios
+﻿namespace ConsoleBank.Modelos.Funcionarios
 {
     public class Auxiliar : Funcionario
     {

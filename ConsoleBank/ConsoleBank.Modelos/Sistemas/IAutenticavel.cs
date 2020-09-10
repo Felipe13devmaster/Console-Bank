@@ -1,6 +1,4 @@
-﻿using ConsoleBank.Funcionarios;
-
-namespace ConsoleBank.Sistemas
+﻿namespace ConsoleBank.Modelos.Sistemas
 {
     public interface IAutenticavel 
     {

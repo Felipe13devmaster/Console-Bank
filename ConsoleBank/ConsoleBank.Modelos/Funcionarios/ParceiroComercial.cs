@@ -1,11 +1,6 @@
-﻿using ConsoleBank.Sistemas;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ConsoleBank.Modelos.Sistemas;
 
-namespace ConsoleBank
+namespace ConsoleBank.Modelos.Funcionarios
 {
     public class ParceiroComercial : IAutenticavel
     {

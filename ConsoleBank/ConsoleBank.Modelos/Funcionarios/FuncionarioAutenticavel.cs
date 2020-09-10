@@ -1,7 +1,6 @@
-﻿using ConsoleBank.Funcionarios;
-using ConsoleBank.Sistemas;
+﻿using ConsoleBank.Modelos.Sistemas;
 
-namespace ConsoleBank
+namespace ConsoleBank.Modelos.Funcionarios
 {
     public abstract class FuncionarioAutenticavel : Funcionario, IAutenticavel
     {

@@ -1,6 +1,6 @@
-﻿using ConsoleBank.Funcionarios;
+﻿using ConsoleBank.Modelos.Funcionarios;
 
-namespace ConsoleBank
+namespace ConsoleBank.Modelos.Sistemas
 {
     public class GerenciadorBonificacao
     {

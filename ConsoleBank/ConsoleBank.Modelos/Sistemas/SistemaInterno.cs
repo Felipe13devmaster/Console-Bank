@@ -1,11 +1,6 @@
-﻿using ConsoleBank.Funcionarios;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 
-namespace ConsoleBank.Sistemas
+namespace ConsoleBank.Modelos.Sistemas
 {
     public class SistemaInterno
     {

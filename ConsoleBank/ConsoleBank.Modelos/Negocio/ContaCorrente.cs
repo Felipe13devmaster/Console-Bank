@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ConsoleBank.Negocio
+namespace ConsoleBank.Modelos.Negocio
 {
     public class ContaCorrente
     {

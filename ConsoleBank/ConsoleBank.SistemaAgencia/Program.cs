@@ -1,9 +1,5 @@
-﻿using ConsoleBank.Negocio;
+﻿using ConsoleBank.Modelos.Negocio;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsoleBank.SistemaAgencia
 {

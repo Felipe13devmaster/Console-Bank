@@ -1,6 +1,6 @@
 ﻿namespace ConsoleBank.Modelos.Funcionarios
 {
-    class Designer : Funcionario
+    public class Designer : Funcionario
     {
         public Designer(string cpf) : base(cpf, 3000)
         {
@@ -12,7 +12,7 @@
             Salario *= 1.11;
         }
 
-        public override double GetBonificacao()
+        internal protected override double GetBonificacao()
         {
             return Salario * 0.17;
         }

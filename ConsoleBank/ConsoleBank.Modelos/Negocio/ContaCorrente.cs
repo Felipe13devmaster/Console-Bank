@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleBank.Modelos.Exceptions;
+using System;
 
 namespace ConsoleBank.Modelos.Negocio
 {

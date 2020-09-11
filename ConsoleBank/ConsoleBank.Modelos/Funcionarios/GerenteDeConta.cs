@@ -1,6 +1,6 @@
 ﻿namespace ConsoleBank.Modelos.Funcionarios
 {
-    class GerenteDeConta : FuncionarioAutenticavel
+    public class GerenteDeConta : FuncionarioAutenticavel
     {
         public GerenteDeConta(string cpf) : base(cpf, 4000)
         {
@@ -12,7 +12,7 @@
             Salario *= 1.05;
         }
 
-        public override double GetBonificacao()
+        internal protected override double GetBonificacao()
         {
             return Salario * 0.25;
         }

@@ -1,8 +1,8 @@
-﻿using System;
-using ConsoleBank.Negocio;
-using ConsoleBank.Funcionarios;
-using ConsoleBank.Sistemas;
-using System.IO;
+﻿using ConsoleBank.Modelos.Exceptions;
+using ConsoleBank.Modelos.Funcionarios;
+using ConsoleBank.Modelos.Negocio;
+using ConsoleBank.Modelos.Sistemas;
+using System;
 
 namespace ConsoleBank
 {
@@ -10,6 +10,7 @@ namespace ConsoleBank
     {
         static void Main(string[] args)
         {
+            
             try
             {
                 CarregarContas();
@@ -93,9 +94,11 @@ namespace ConsoleBank
             diretor.Nome = "Alfredo";
             diretor.Senha = "5218";
 
-            GerenteDeConta gerenteDeConta = new GerenteDeConta("977.355.899-88");
-            gerenteDeConta.Nome = "Gabriela";
-            gerenteDeConta.Senha = "1234";
+            GerenteDeConta gerenteDeConta = new GerenteDeConta("977.355.899-88")
+            {
+                Nome = "Gabriela",
+                Senha = "1234"
+            };
 
             ParceiroComercial parceiroComercial = new ParceiroComercial();
             parceiroComercial.Senha = "4321";

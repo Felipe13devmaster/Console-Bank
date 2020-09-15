@@ -8,10 +8,9 @@ namespace ConsoleBank.SistemaAgencia
     {
         static void Main(string[] args)
         {
-            ContaCorrente contaCorrente = new ContaCorrente(123, 550017);
-            FuncionarioAutenticavel funcionario = null;
-            Estagiario estagiario = new Estagiario(1234, 1000);
-            
+
+            ContaCorrente contaCorrente = new ContaCorrente(123, 55567);
+            contaCorrente.Depositar(50);
 
             Console.ReadLine();
         }

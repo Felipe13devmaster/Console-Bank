@@ -5,6 +5,9 @@ namespace ConsoleBank.Modelos.Negocio
 {
     public class ContaCorrente
     {
+        /// <summary>
+        /// Define uma conta corrente do banco Console Bank.
+        /// </summary>
         public Cliente Titular { get; set; }
         public static int TotalDeContasCriadas { get; private set; }
         public static double TaxaOperacao { get; private set; }
@@ -27,6 +30,11 @@ namespace ConsoleBank.Modelos.Negocio
             }
         }
 
+        /// <summary>
+        /// Cria uma instancia de conta corrente com os argumentos utilizados.
+        /// </summary>
+        /// <param name="agencia"> Representa o valor da propriedade <see cref="Agencia"/> e deve pussir um valor maior que zero. </param>
+        /// <param name="numero"> Representa o valor da propriedade <see cref="Numero"/> e deve pussir um valor maior que zero. </param>
         public ContaCorrente(int agencia, int numero)
         {
             if (agencia <= 0)

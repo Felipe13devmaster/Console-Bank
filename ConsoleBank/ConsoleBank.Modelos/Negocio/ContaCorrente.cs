@@ -3,11 +3,11 @@ using System;
 
 namespace ConsoleBank.Modelos.Negocio
 {
+    /// <summary>
+    /// Define uma conta corrente do banco Console Bank.
+    /// </summary>
     public class ContaCorrente
     {
-        /// <summary>
-        /// Define uma conta corrente do banco Console Bank.
-        /// </summary>
         public Cliente Titular { get; set; }
         public static int TotalDeContasCriadas { get; private set; }
         public static double TaxaOperacao { get; private set; }
@@ -24,7 +24,7 @@ namespace ConsoleBank.Modelos.Negocio
             {
                 return _saldo;
             }
-            set
+            private set
             {
                 _saldo = value;
             }
@@ -58,6 +58,12 @@ namespace ConsoleBank.Modelos.Negocio
             return _saldo;
         }
 
+        /// <summary>
+        /// Realiza o saque e atualiza o valor da propriedade <see cref="Saldo"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException"> Exceção lançada quando um valor negativo é utilizado no argumento <paramref name="valor"/></exception>.
+        /// <exception cref="SaldoInsuficienteException"> Exceção lançada quando o <paramref name="valor"/> é maior que o valor da propriedade <see cref="Saldo"/></exception>.
+        /// <param name="valor"> Representa o valor do saque, deve ser maior que 0 e menor que o <see cref="Saldo"/></param>.
         public void Sacar(double valor)
         {
             if (valor < 0)

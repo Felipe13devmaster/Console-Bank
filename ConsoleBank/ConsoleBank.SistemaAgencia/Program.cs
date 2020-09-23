@@ -1,5 +1,6 @@
 ﻿using ConsoleBank.Modelos.Funcionarios;
 using ConsoleBank.Modelos.Negocio;
+using Humanizer;
 using System;
 
 namespace ConsoleBank.SistemaAgencia
@@ -8,14 +9,19 @@ namespace ConsoleBank.SistemaAgencia
     {
         static void Main(string[] args)
         {
-
-            ContaCorrente contaCorrente = new ContaCorrente(123, 55567);
-            contaCorrente.Depositar(50);
-            contaCorrente.Sacar(60);
-            
-            Console.WriteLine(contaCorrente.Saldo);
+            CalcularPrazoVencimento();
 
             Console.ReadLine();
+        }
+
+        private static void CalcularPrazoVencimento()
+        {
+            DateTime vencimento = new DateTime(2020, 09, 25);
+            DateTime dataCorrente = DateTime.Now;
+            TimeSpan diferenca = vencimento - dataCorrente;
+
+            string mensagem = "Vencimento em " + TimeSpanHumanizeExtensions.Humanize(diferenca);
+            Console.WriteLine(mensagem);
         }
     }
 }

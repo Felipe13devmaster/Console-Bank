@@ -9,7 +9,7 @@ namespace ConsoleBank.SistemaAgencia
     {
         static void Main(string[] args)
         {
-            CalcularPrazoVencimento();
+            string url = "https://www.consolebank.com.br/cambio?moedaOrigem=real&moedaDestino=dolar&valor=1500";
 
             Console.ReadLine();
         }

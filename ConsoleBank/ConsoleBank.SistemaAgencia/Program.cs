@@ -9,9 +9,22 @@ namespace ConsoleBank.SistemaAgencia
     {
         static void Main(string[] args)
         {
-            string url = "https://www.consolebank.com.br/cambio?moedaOrigem=real&moedaDestino=dolar&valor=1500";
+            ProcessarURL();
 
             Console.ReadLine();
+        }
+
+        private static void ProcessarURL()
+        {
+            string url = "https://www.consolebank.com.br/cambio?moedaOrigem=real&moedaDestino=dolar&valor=1500";
+
+            ExtratorValorDeArgumentosURL extrator = new ExtratorValorDeArgumentosURL(url);
+            string moedaOrigem = extrator.GetValor("moedaOrigem");
+            string moedaDestino = extrator.GetValor("moedaDestino");
+            string valor = extrator.GetValor("Valor");
+            Console.WriteLine("Moeda origem: " + moedaOrigem);
+            Console.WriteLine("Moeda destino: " + moedaDestino);
+            Console.WriteLine("Valor: " + valor);
         }
 
         private static void CalcularPrazoVencimento()

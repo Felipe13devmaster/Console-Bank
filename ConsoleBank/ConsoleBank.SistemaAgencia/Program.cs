@@ -9,7 +9,8 @@ namespace ConsoleBank.SistemaAgencia
     {
         static void Main(string[] args)
         {
-            ProcessarURL();
+            ContaCorrente contaCorrente = new ContaCorrente(200, 57800);
+            Console.WriteLine(contaCorrente);
 
             Console.ReadLine();
         }

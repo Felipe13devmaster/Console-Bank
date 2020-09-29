@@ -109,5 +109,10 @@ namespace ConsoleBank.Modelos.Negocio
 
             contaDestino.Depositar(valor);
         }
+
+        public override string ToString()
+        {
+            return $"Número {Numero}, Agencia {Agencia}, Saldo {Saldo}";
+        }
     }
 }

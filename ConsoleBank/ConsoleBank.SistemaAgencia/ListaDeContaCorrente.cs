@@ -1,9 +1,5 @@
 ﻿using ConsoleBank.Modelos.Negocio;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsoleBank.SistemaAgencia
 {
@@ -11,6 +7,13 @@ namespace ConsoleBank.SistemaAgencia
     {
         private ContaCorrente[] _itens;
         private int _proximaPosicao;
+        public int Tamanho 
+        { 
+            get 
+            {
+                return _proximaPosicao;
+            } 
+        }
         public ListaDeContaCorrente(int capacidadeInicial = 5)
         {
             _itens = new ContaCorrente[capacidadeInicial];
@@ -48,6 +51,16 @@ namespace ConsoleBank.SistemaAgencia
             _itens[_proximaPosicao] = null;
         }
 
+        public ContaCorrente GetItemNoIndice(int indice)
+        {
+            if (indice < 0 || indice >= _proximaPosicao)
+            {
+                throw new ArgumentOutOfRangeException(nameof(indice));
+            }
+
+            return _itens[indice];
+        }
+
         private void VerificarCapacidade(int tamanhoNecessario)
         {
             if (_itens.Length >= tamanhoNecessario)
@@ -70,6 +83,14 @@ namespace ConsoleBank.SistemaAgencia
             }
 
             _itens = novoArray;
+        }
+
+        public ContaCorrente this [int indice]//indexador
+        {
+            get
+            {
+                return GetItemNoIndice(indice);
+            }
         }
     }
 }

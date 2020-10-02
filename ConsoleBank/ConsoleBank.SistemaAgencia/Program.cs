@@ -1,7 +1,9 @@
 ﻿using ConsoleBank.Modelos.Funcionarios;
 using ConsoleBank.Modelos.Negocio;
+using ConsoleBank.SistemaAgencia.Extensoes;
 using Humanizer;
 using System;
+using System.Collections.Generic;
 
 namespace ConsoleBank.SistemaAgencia
 {
@@ -9,8 +11,20 @@ namespace ConsoleBank.SistemaAgencia
     {
         static void Main(string[] args)
         {
-            ContaCorrente contaCorrente = new ContaCorrente(200, 57800);
-           // Console.WriteLine(contaCorrente);
+            List<int> idades = new List<int>();
+            idades.Add(12);
+            idades.Add(15);
+
+            idades.AdicionarVarios(1, 2, 3, 4);
+
+            idades.Remove(3);
+
+            for (int i = 0; i < idades.Count; i++)
+            {
+                Console.WriteLine(idades[i]);
+            }
+
+
 
             Console.ReadLine();
         }

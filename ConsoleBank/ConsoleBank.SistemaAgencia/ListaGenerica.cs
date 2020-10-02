@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleBank.SistemaAgencia
 {
-    public class Lista<T>
+    public class Lista<T>//classe generica
     {
         private T[] _itens;
         private int _proximaPosicao;

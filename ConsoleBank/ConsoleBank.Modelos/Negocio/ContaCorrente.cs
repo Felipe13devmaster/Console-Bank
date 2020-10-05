@@ -6,7 +6,7 @@ namespace ConsoleBank.Modelos.Negocio
     /// <summary>
     /// Define uma conta corrente do banco Console Bank.
     /// </summary>
-    public class ContaCorrente
+    public class ContaCorrente : IComparable
     {
         public Cliente Titular { get; set; }
         public static int TotalDeContasCriadas { get; private set; }
@@ -125,6 +125,28 @@ namespace ConsoleBank.Modelos.Negocio
             }
 
             return Numero == outraConta.Numero && Agencia == outraConta.Agencia;
+        }
+
+        public int CompareTo(object obj)
+        {
+            var outraContaCorrente = obj as ContaCorrente;
+
+            if (outraContaCorrente == null)
+            {
+                return -1;
+            }
+
+            if (Numero < outraContaCorrente.Numero)
+            {
+                return -1;
+            }
+
+            if (Numero == outraContaCorrente.Numero)
+            {
+                return 0;
+            }
+
+            return 1;
         }
     }
 }

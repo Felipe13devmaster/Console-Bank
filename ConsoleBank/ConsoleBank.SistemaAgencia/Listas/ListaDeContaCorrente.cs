@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ConsoleBank.Modelos.Negocio;
+using System;
 
-namespace ConsoleBank.SistemaAgencia
+namespace ConsoleBank.SistemaAgencia.Listas
 {
-    public class Lista<T>//classe generica
+    public class ListaDeContaCorrente
     {
-        private T[] _itens;
+        private ContaCorrente[] _itens;
         private int _proximaPosicao;
         public int Tamanho
         {
@@ -17,26 +14,26 @@ namespace ConsoleBank.SistemaAgencia
                 return _proximaPosicao;
             }
         }
-        public Lista(int capacidadeInicial = 5)
+        public ListaDeContaCorrente(int capacidadeInicial = 5)
         {
-            _itens = new T[capacidadeInicial];
+            _itens = new ContaCorrente[capacidadeInicial];
             _proximaPosicao = 0;
         }
 
-        public void Adicionar(T item)
+        public void Adicionar(ContaCorrente item)
         {
             VerificarCapacidade(_proximaPosicao + 1);
             _itens[_proximaPosicao] = item;
             _proximaPosicao++;
         }
 
-        public void Remover(T item)
+        public void Remover(ContaCorrente item)
         {
             int indiceItem = -1;
 
             for (int i = 0; i < _proximaPosicao; i++)
             {
-                T itemAtual = _itens[i];
+                ContaCorrente itemAtual = _itens[i];
 
                 if (itemAtual.Equals(item))
                 {
@@ -51,10 +48,10 @@ namespace ConsoleBank.SistemaAgencia
             }
 
             _proximaPosicao--;
-            // _itens[_proximaPosicao] = null;
+            _itens[_proximaPosicao] = null;
         }
 
-        public T GetItemNoIndice(int indice)
+        public ContaCorrente GetItemNoIndice(int indice)
         {
             if (indice < 0 || indice >= _proximaPosicao)
             {
@@ -78,7 +75,7 @@ namespace ConsoleBank.SistemaAgencia
                 novoTamanho = tamanhoNecessario;
             }
 
-            T[] novoArray = new T[novoTamanho];
+            ContaCorrente[] novoArray = new ContaCorrente[novoTamanho];
 
             for (int indice = 0; indice < _itens.Length; indice++)
             {
@@ -88,7 +85,7 @@ namespace ConsoleBank.SistemaAgencia
             _itens = novoArray;
         }
 
-        public T this[int indice]//indexador
+        public ContaCorrente this[int indice]//indexador
         {
             get
             {
@@ -97,4 +94,3 @@ namespace ConsoleBank.SistemaAgencia
         }
     }
 }
-

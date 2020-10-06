@@ -4,12 +4,45 @@ using ConsoleBank.SistemaAgencia.Extensoes;
 using Humanizer;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 
 namespace ConsoleBank.SistemaAgencia
 {
     class Program
     {
         static void Main(string[] args)
+        {
+            string enderecoDoArquivo = "C:/Users/felip/Desktop/ListadeContas.txt";
+            var fluxoDoArquivo = new FileStream(enderecoDoArquivo, FileMode.Open);
+            var buffer = new byte[1024];// equivale a 1Kbyte.
+            var numeroDeBytesLidos = -1;//Recebe -1 pois, o metodo FileStream.Read() sempre retorna positivo ou zero.Então essa e uma inicialização de variavel segura.
+
+            while (numeroDeBytesLidos != 0)
+            {
+                numeroDeBytesLidos = fluxoDoArquivo.Read(buffer, 0, 1024);//Read() retorna o numero de bytes lidos ,e retorna zero quando termina de ler.
+                EscreverBuffer(buffer);
+            }
+            
+
+            Console.ReadLine();
+        }
+
+        private static void EscreverBuffer(byte[] buffer)
+        {
+            var utf8 = new UTF8Encoding();//Equivale a Enconding.UTF8;.
+            var texto = utf8.GetString(buffer);
+
+            Console.Write(texto);
+            
+            //foreach (var meuByte in buffer)
+            //{
+            //    Console.Write(meuByte);
+            //    Console.Write(" ");
+            //}
+        }
+
+        private static void UsarListas()
         {
             List<int> idades = new List<int>();
             idades.Add(12);
@@ -23,10 +56,6 @@ namespace ConsoleBank.SistemaAgencia
             {
                 Console.WriteLine(idades[i]);
             }
-
-
-
-            Console.ReadLine();
         }
 
         private static void ProcessarURL()

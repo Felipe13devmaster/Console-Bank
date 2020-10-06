@@ -50,8 +50,8 @@
     <Compile Include="Estagiario.cs" />
     <Compile Include="Extensoes\ListExtensoes.cs" />
     <Compile Include="ExtratorValorDeArgumentosURL.cs" />
-    <Compile Include="ListaDeContaCorrente.cs" />
-    <Compile Include="ListaGenerica.cs" />
+    <Compile Include="Listas\ListaDeContaCorrente.cs" />
+    <Compile Include="Listas\ListaGenerica.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -64,5 +64,6 @@
       <Name>ConsoleBank.Modelos</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

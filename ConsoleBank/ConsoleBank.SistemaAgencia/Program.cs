@@ -13,33 +13,75 @@ namespace ConsoleBank.SistemaAgencia
     {
         static void Main(string[] args)
         {
-            string enderecoDoArquivo = "C:/Users/felip/Desktop/ListadeContas.txt";
-            var fluxoDoArquivo = new FileStream(enderecoDoArquivo, FileMode.Open);
-            var buffer = new byte[1024];// equivale a 1Kbyte.
-            var numeroDeBytesLidos = -1;//Recebe -1 pois, o metodo FileStream.Read() sempre retorna positivo ou zero.Então essa e uma inicialização de variavel segura.
+            var enderecoDoArquivo = "C:/Users/felip/Desktop/ListadeContas.txt";
 
-            while (numeroDeBytesLidos != 0)
+            using (var fluxoDoArquivo = new FileStream(enderecoDoArquivo, FileMode.Open))
+            using (var leitor = new StreamReader(fluxoDoArquivo))
             {
-                numeroDeBytesLidos = fluxoDoArquivo.Read(buffer, 0, 1024);//Read() retorna o numero de bytes lidos ,e retorna zero quando termina de ler.
-                EscreverBuffer(buffer);
+                while (!leitor.EndOfStream)
+                {
+                    var linha = leitor.ReadLine();//Usar ReadToEnd() com cuidado pois ao contrario do buffer ele carrega tudo de uma vez.
+                    var contaCorrente = ConverterStringParaContaCorrente(linha);
+                    var mensagem = $"Conta numero: {contaCorrente.Numero} Agencia: {contaCorrente.Agencia} Saldo: {contaCorrente.Saldo} Titular: {contaCorrente.Titular.Nome}";
+                    Console.WriteLine(mensagem);
+                    //Console.WriteLine(linha);
+                }
             }
-            
 
             Console.ReadLine();
         }
 
-        private static void EscreverBuffer(byte[] buffer)
+        private static void LidandoComstreamDiretamente()
+        {
+            string enderecoDoArquivo = "C:/Users/felip/Desktop/ListadeContas.txt";
+
+            using (var fluxoDoArquivo = new FileStream(enderecoDoArquivo, FileMode.Open))//Por baixo exeuta o Finally que executa o metoto Dispose() que por sua vez invova o Close()
+            {
+                var buffer = new byte[1024];// equivale a 1Kbyte.
+                var numeroDeBytesLidos = -1;//Recebe -1 pois, o metodo FileStream.Read() sempre retorna positivo ou zero.Então essa e uma inicialização de variavel segura.
+
+                while (numeroDeBytesLidos != 0)
+                {
+                    numeroDeBytesLidos = fluxoDoArquivo.Read(buffer, 0, 1024);//Read() retorna o numero de bytes lidos ,e retorna zero quando termina de ler.
+                    EscreverBuffer(buffer, numeroDeBytesLidos);
+                }
+            }
+        }
+
+        private static void EscreverBuffer(byte[] buffer, int bytesLidos)
         {
             var utf8 = new UTF8Encoding();//Equivale a Enconding.UTF8;.
-            var texto = utf8.GetString(buffer);
+            var texto = utf8.GetString(buffer, 0, bytesLidos);
 
             Console.Write(texto);
-            
+
             //foreach (var meuByte in buffer)
             //{
             //    Console.Write(meuByte);
             //    Console.Write(" ");
             //}
+        }
+
+        static ContaCorrente ConverterStringParaContaCorrente(string linha)
+        {
+            string[] campos = linha.Split(' ');// qubra string apartir do caractere separador definido np ctor.Retorna um array de strings.
+            var agencia = campos[0];
+            var numero = campos[1];
+            var saldo = campos[2];
+            var nomeTitular = campos[3];
+
+            var agenciaInt = int.Parse(agencia);
+            var numeroInt = int.Parse(numero);
+            var saldoDouble = double.Parse(saldo.Replace('.', ','));
+
+            var titular = new Cliente();
+            titular.Nome = nomeTitular;
+
+            var resultado = new ContaCorrente(agenciaInt, numeroInt);
+            resultado.Depositar(saldoDouble);
+            resultado.Titular = titular;
+
+            return resultado;
         }
 
         private static void UsarListas()

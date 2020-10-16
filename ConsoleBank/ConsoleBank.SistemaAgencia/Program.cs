@@ -13,6 +13,38 @@ namespace ConsoleBank.SistemaAgencia
     {
         static void Main(string[] args)
         {
+
+            CriarArquivoComWriter();
+            Console.ReadLine();
+        }
+
+        static void CriarArquivoComWriter()
+        {
+            var caminhoNovoArquivo = "contasExportadas.csv";
+
+            using (var fluxoDeArquivo = new FileStream(caminhoNovoArquivo, FileMode.Create))
+            using (var escritor = new StreamWriter(fluxoDeArquivo))
+            {
+                escritor.Write("7379,59018,5623.90,Felipe Rodrigues");
+            }
+        }
+
+        static void CriarArquivoManualmente()
+        {
+            var caminhoNovoArquivo = "contasExportadas.csv";
+
+            using (var fluxoDeArquivo = new FileStream(caminhoNovoArquivo, FileMode.Create))
+            {
+                var contaComoString = "7379,59017,1238.12,Gabriela Sousa";
+                var enconding = Encoding.UTF8;
+                var bytes = enconding.GetBytes(contaComoString);
+
+                fluxoDeArquivo.Write(bytes, 0, bytes.Length);//Write(array de bytes, posição inicial de leitura , quantidade de leitura)
+            }
+        }
+
+        private static void LidandoComStreamDeDados()
+        {
             var enderecoDoArquivo = "C:/Users/felip/Desktop/ListadeContas.txt";
 
             using (var fluxoDoArquivo = new FileStream(enderecoDoArquivo, FileMode.Open))
@@ -27,8 +59,6 @@ namespace ConsoleBank.SistemaAgencia
                     //Console.WriteLine(linha);
                 }
             }
-
-            Console.ReadLine();
         }
 
         private static void LidandoComstreamDiretamente()
@@ -64,7 +94,7 @@ namespace ConsoleBank.SistemaAgencia
 
         static ContaCorrente ConverterStringParaContaCorrente(string linha)
         {
-            string[] campos = linha.Split(' ');// qubra string apartir do caractere separador definido np ctor.Retorna um array de strings.
+            string[] campos = linha.Split(',');// qubra string apartir do caractere separador definido np ctor.Retorna um array de strings.
             var agencia = campos[0];
             var numero = campos[1];
             var saldo = campos[2];
